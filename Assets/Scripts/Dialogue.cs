@@ -11,9 +11,11 @@ public class Dialogue : MonoBehaviour
     public GameObject playerPortrait;
     public GameObject fatherPortrait;
     public GameObject choiceOptions;
+    public Player player;
     public int[] playerLines;
     public int[] fatherLines;
     public int[] choiceLines;
+    public int[] endDialogueLines;
     public int choice1Response;
     public int choice2Response;
     private int choiceIndex;
@@ -21,10 +23,13 @@ public class Dialogue : MonoBehaviour
     private bool choiceMade = false;
     private bool isFatherPortraitActive = false;
     private bool isPlayerPortraitActive = false;
+    private bool endOfDialogue = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        
+        player.canMove = false;
         textCompenent.text = string.Empty;
         StartDialogue();
     }
@@ -34,10 +39,15 @@ public class Dialogue : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (textCompenent.text == lines[index] && !canMakeChoice)
+            if (textCompenent.text == lines[index] && !canMakeChoice && endOfDialogue)
+            {
+                gameObject.SetActive(false);
+            }
+            else if (textCompenent.text == lines[index] && !canMakeChoice)
             {
                 NextLine();
             }
+            
             else
             {
                 StopAllCoroutines();
@@ -90,6 +100,7 @@ public class Dialogue : MonoBehaviour
             index++;       
             DisplayPortraits(index);
             DisplayChoices(index);
+            EndDialogueCheck(index);
             textCompenent.text = string.Empty;
             StartCoroutine(TypeLine());
         }
@@ -158,6 +169,18 @@ public class Dialogue : MonoBehaviour
                 choiceOptions.SetActive(false);
                 canMakeChoice = false;
             }
+        }
+    }
+    void EndDialogueCheck(int index)
+    {
+        for (int i = 0; i < endDialogueLines.Length; i++)
+        {
+            if (index == endDialogueLines[i])
+            {
+                endOfDialogue = true;
+                player.canMove = true;
+            }
+           
         }
     }
 }
