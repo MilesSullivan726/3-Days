@@ -5,13 +5,14 @@ using TMPro;
 public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI textCompenent;
-    private int index;
+    public int index;
     public string[] lines;
     public float textSpeed;
     public GameObject playerPortrait;
     public GameObject fatherPortrait;
     public GameObject choiceOptions;
     public Player player;
+    private GameManager gameManager;
     public int[] playerLines;
     public int[] fatherLines;
     public int[] choiceLines;
@@ -24,6 +25,7 @@ public class Dialogue : MonoBehaviour
     private bool isFatherPortraitActive = false;
     private bool isPlayerPortraitActive = false;
     private bool endOfDialogue = false;
+    public bool setIndex0 = true;
 
     // Start is called before the first frame update
     void Start()
@@ -31,14 +33,26 @@ public class Dialogue : MonoBehaviour
         
         player.canMove = false;
         textCompenent.text = string.Empty;
-        StartDialogue();
+        gameManager = GameObject.FindWithTag("Game Manager").GetComponent<GameManager>();
+        if (setIndex0)
+        {
+            StartDialogue();
+        }
+        else
+        {
+            StartCoroutine(TypeLine());
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            EndDialogueCheck(index);
             if (textCompenent.text == lines[index] && !canMakeChoice && endOfDialogue)
             {
                 gameObject.SetActive(false);
@@ -47,7 +61,7 @@ public class Dialogue : MonoBehaviour
             {
                 NextLine();
             }
-            
+
             else
             {
                 StopAllCoroutines();
@@ -60,6 +74,7 @@ public class Dialogue : MonoBehaviour
           
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
             {
+                GameManager.choiceOneDecision = 1;
                 index = choice1Response - 1;
                 canMakeChoice = false;
                 choiceMade = true;
@@ -68,6 +83,7 @@ public class Dialogue : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
             {
+                GameManager.choiceOneDecision = 2;
                 index = choice2Response - 1;
                 canMakeChoice = false;
                 choiceMade = true;
@@ -97,6 +113,7 @@ public class Dialogue : MonoBehaviour
     {
         if (index < lines.Length - 1)
         {
+            
             index++;       
             DisplayPortraits(index);
             DisplayChoices(index);
@@ -114,7 +131,7 @@ public class Dialogue : MonoBehaviour
     void DisplayPortraits(int index)
     {
         
-        Debug.Log(index);
+       
         
         // display player portrait on these lines
         for (int i = 0; i < playerLines.Length ; i++)
@@ -173,10 +190,13 @@ public class Dialogue : MonoBehaviour
     }
     void EndDialogueCheck(int index)
     {
+        
         for (int i = 0; i < endDialogueLines.Length; i++)
         {
+            Debug.Log("Checking against endDialogueLines[" + i + "]: " + endDialogueLines[i]);
             if (index == endDialogueLines[i])
             {
+                Debug.Log("End of dialogue");
                 endOfDialogue = true;
                 player.canMove = true;
             }

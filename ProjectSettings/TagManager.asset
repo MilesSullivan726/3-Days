@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interactable
+  - Game Manager
+  - Day Two Dialogue
   layers:
   - Default
   - TransparentFX
