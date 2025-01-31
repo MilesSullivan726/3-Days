@@ -789,7 +789,7 @@ Transform:
   m_GameObject: {fileID: 2116962900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 2.7256732, y: 0.0062725544, z: 0}
+  m_LocalPosition: {x: 2.7256732, y: 0.0062725544, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -803,6 +803,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 768227684587418163, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 768227684587418163, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1523027685, guid: d0dca8e772af90f458b8bf449b70b783, type: 3}
+    - target: {fileID: 768227684587418163, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 768227684587418163, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 768227684587418163, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2993863748593097881, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
       propertyPath: m_Pivot.x
       value: 0
