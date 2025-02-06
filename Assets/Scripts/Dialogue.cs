@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI textCompenent;
@@ -9,12 +10,14 @@ public class Dialogue : MonoBehaviour
     public string[] lines;
     public float textSpeed;
     public GameObject playerPortrait;
-    public GameObject fatherPortrait;
+    public GameObject NPCPortrait;
     public GameObject choiceOptions;
+    public Sprite[] playerExpressions;
+    public Sprite[] NPCExpressions;
     public Player player;
     private GameManager gameManager;
     public int[] playerLines;
-    public int[] fatherLines;
+    public int[] NPCLines;
     public int[] choiceLines;
     public int[] endDialogueLines;
     public int choice1Response;
@@ -22,7 +25,7 @@ public class Dialogue : MonoBehaviour
     private int choiceIndex;
     private bool canMakeChoice = false;
     private bool choiceMade = false;
-    private bool isFatherPortraitActive = false;
+    private bool isNPCPortraitActive = false;
     private bool isPlayerPortraitActive = false;
     private bool endOfDialogue = false;
     public bool setIndex0 = true;
@@ -40,6 +43,7 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
+            DisplayPortraits(index);
             StartCoroutine(TypeLine());
         }
         
@@ -128,10 +132,25 @@ public class Dialogue : MonoBehaviour
    
     }
 
+    void ChangeExpression(int index, bool isPlayer)
+    {
+        Debug.Log("Entered method");
+        if (isPlayer)
+        {
+            Debug.Log("Player portrait");
+            playerPortrait.GetComponent<Image>().sprite = playerExpressions[index];
+        }
+        else
+        {
+            Debug.Log("Father portrait");
+            NPCPortrait.GetComponent<Image>().sprite = NPCExpressions[index];
+        }
+    }
+
     void DisplayPortraits(int index)
     {
-        
-       
+
+        Debug.Log("display portraits called");
         
         // display player portrait on these lines
         for (int i = 0; i < playerLines.Length ; i++)
@@ -142,32 +161,34 @@ public class Dialogue : MonoBehaviour
                 {
                     playerPortrait.SetActive(true);
                     isPlayerPortraitActive = true;
+                    ChangeExpression(index, true);
                     break; // No need to continue checking other lines
                 }
             }
 
-            // If no matching father line is found, hide the father portrait
+            // If no matching player line is found, hide the player portrait
             if (!isPlayerPortraitActive)
             {
                 playerPortrait.SetActive(false);
             }
         }
         // display father portrait on these lines
-        for (int j = 0; j < fatherLines.Length; j++)
+        for (int j = 0; j < NPCLines.Length; j++)
         {
             {
-                if (index == fatherLines[j])
+                if (index == NPCLines[j])
                 {
-                    fatherPortrait.SetActive(true);
-                    isFatherPortraitActive = true;
+                    NPCPortrait.SetActive(true);
+                    isNPCPortraitActive = true;
+                    ChangeExpression(index, false);
                     break; // No need to continue checking other lines
                 }
             }
 
             // If no matching father line is found, hide the father portrait
-            if (!isFatherPortraitActive)
+            if (!isNPCPortraitActive)
             {
-                fatherPortrait.SetActive(false);
+                NPCPortrait.SetActive(false);
             }
         }
     }

@@ -199,6 +199,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2205317, y: 5.0144825}
   m_EdgeRadius: 0
+--- !u!1 &89072895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5543851779438416070, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+  m_PrefabInstance: {fileID: 6608856205036561571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &102496088
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,6 +2256,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 768227684587418163, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2993863748593097881, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2363,10 +2372,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6899472020803354894, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 314234692}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: NPCPortrait
+      value: 
+      objectReference: {fileID: 89072895}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: NPCLines.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
       propertyPath: lines.Array.data[0]
       value: Whats good my dude
@@ -2374,6 +2395,58 @@ PrefabInstance:
     - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
       propertyPath: lines.Array.data[1]
       value: Nothing bro, what's your favorite flavor of ice cream?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: NPCLines.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: NPCLines.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: NPCLines.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: NPCExpressions.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: NPCExpressions.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: NPCExpressions.Array.data[1]
+      value: 
+      objectReference: {fileID: 2000256807, guid: d0dca8e772af90f458b8bf449b70b783, type: 3}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: NPCExpressions.Array.data[2]
+      value: 
+      objectReference: {fileID: 1523027685, guid: d0dca8e772af90f458b8bf449b70b783, type: 3}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: NPCExpressions.Array.data[3]
+      value: 
+      objectReference: {fileID: 1123921501, guid: d0dca8e772af90f458b8bf449b70b783, type: 3}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: playerExpressions.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: playerExpressions.Array.data[0]
+      value: 
+      objectReference: {fileID: 1617074838, guid: 44a76dc55bc106b43a5a5c9ad9f13d0d, type: 3}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: playerExpressions.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: playerExpressions.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348091301616430, guid: 845b7c3fe43659645a2e7013c2faa0fa, type: 3}
+      propertyPath: playerExpressions.Array.data[3]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
