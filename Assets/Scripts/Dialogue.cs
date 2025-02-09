@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
 public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI textCompenent;
@@ -12,9 +13,11 @@ public class Dialogue : MonoBehaviour
     public GameObject playerPortrait;
     public GameObject NPCPortrait;
     public GameObject choiceOptions;
+    public GameObject keyItem;
+    public GameObject fadeOut;
+    public Player player;
     public Sprite[] playerExpressions;
     public Sprite[] NPCExpressions;
-    public Player player;
     private GameManager gameManager;
     public int[] playerLines;
     public int[] NPCLines;
@@ -29,11 +32,17 @@ public class Dialogue : MonoBehaviour
     private bool isPlayerPortraitActive = false;
     private bool endOfDialogue = false;
     public bool setIndex0 = true;
+    public bool activateKeyItem = false;
+    public bool isEndLevelDialogue = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (activateKeyItem)
+        {
+            keyItem.SetActive(true);
+        }
+
         player.canMove = false;
         textCompenent.text = string.Empty;
         gameManager = GameObject.FindWithTag("Game Manager").GetComponent<GameManager>();
@@ -59,6 +68,10 @@ public class Dialogue : MonoBehaviour
             EndDialogueCheck(index);
             if (textCompenent.text == lines[index] && !canMakeChoice && endOfDialogue)
             {
+                if (isEndLevelDialogue)
+                {
+                    fadeOut.SetActive(true);
+                }
                 gameObject.SetActive(false);
             }
             else if (textCompenent.text == lines[index] && !canMakeChoice)
@@ -96,6 +109,10 @@ public class Dialogue : MonoBehaviour
         }
         
     }
+
+    
+
+
     void StartDialogue()
     {
         index = 0;
@@ -134,27 +151,22 @@ public class Dialogue : MonoBehaviour
 
     void ChangeExpression(int index, bool isPlayer)
     {
-        Debug.Log("Entered method");
         if (isPlayer)
         {
-            Debug.Log("Player portrait");
             playerPortrait.GetComponent<Image>().sprite = playerExpressions[index];
         }
         else
         {
-            Debug.Log("Father portrait");
             NPCPortrait.GetComponent<Image>().sprite = NPCExpressions[index];
         }
     }
 
     void DisplayPortraits(int index)
-    {
-
-        Debug.Log("display portraits called");
-        
+    {        
         // display player portrait on these lines
         for (int i = 0; i < playerLines.Length ; i++)
         {
+            isPlayerPortraitActive = false;
 
             {
                 if (index == playerLines[i])
@@ -175,6 +187,7 @@ public class Dialogue : MonoBehaviour
         // display father portrait on these lines
         for (int j = 0; j < NPCLines.Length; j++)
         {
+            isNPCPortraitActive = false;
             {
                 if (index == NPCLines[j])
                 {
@@ -214,10 +227,8 @@ public class Dialogue : MonoBehaviour
         
         for (int i = 0; i < endDialogueLines.Length; i++)
         {
-            Debug.Log("Checking against endDialogueLines[" + i + "]: " + endDialogueLines[i]);
             if (index == endDialogueLines[i])
             {
-                Debug.Log("End of dialogue");
                 endOfDialogue = true;
                 player.canMove = true;
             }

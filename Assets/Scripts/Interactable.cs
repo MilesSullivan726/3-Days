@@ -7,6 +7,7 @@ public class Interactable : MonoBehaviour
     public GameObject popUp;
     public GameObject dialogue;
     private bool hasInteracted = false;
+    private bool inRange = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,12 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.Space) && inRange)
+        {
+            dialogue.SetActive(true);
+            popUp.SetActive(false);
+            hasInteracted = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,14 +39,18 @@ public class Interactable : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             popUp.SetActive(false);
+            inRange = false;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && Input.GetKeyUp(KeyCode.Space) && !hasInteracted)
+        if (collision.CompareTag("Player")  && !hasInteracted)
         {
-            dialogue.SetActive(true);
-            hasInteracted=true;
+            inRange = true;
+        }
+        else
+        {
+            inRange = false;
         }
     }
 }

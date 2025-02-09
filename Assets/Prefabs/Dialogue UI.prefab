@@ -785,6 +785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textCompenent: {fileID: 7658836143058762718}
+  index: 0
   lines:
   - Whats good my brotha in cubes
   - Nothing bruh, what's your favorite flavor of ice cream?
@@ -792,15 +793,18 @@ MonoBehaviour:
   - Chocolate is peak
   textSpeed: 0.05
   playerPortrait: {fileID: 8292005422392328379}
-  fatherPortrait: {fileID: 5543851779438416070}
+  NPCPortrait: {fileID: 0}
   choiceOptions: {fileID: 3666746000934603293}
+  playerExpressions: []
+  NPCExpressions: []
   player: {fileID: 0}
   playerLines: 00000000
-  fatherLines: 010000000200000003000000
+  NPCLines: 
   choiceLines: 01000000
   endDialogueLines: 0200000003000000
   choice1Response: 2
   choice2Response: 3
+  setIndex0: 1
 --- !u!1 &8292005422392328379
 GameObject:
   m_ObjectHideFlags: 0
