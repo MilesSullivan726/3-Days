@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static int choiceOneDecision; // 1 = vanilla, 2 = chocolate
-    public GameObject dayTwoDialogue;
+    public static int choiceOneDecision; // 1 = Good, 2 = Bad
+    public static int choiceTwoDecision; // 1 = Good, 2 = Bad
+    public GameObject dayThreeDialogue;
     public static GameManager Instance;
 
     
@@ -23,19 +24,17 @@ public class GameManager : MonoBehaviour
 
        
 
-        if (SceneManager.GetSceneByName("Day 2").isLoaded == true)
+        if (SceneManager.GetSceneByName("Day 3").isLoaded == true)
         {
-            Debug.Log("Day 2");
-            Debug.Log(choiceOneDecision);
 
-            if (choiceOneDecision == 1)
+            if (choiceOneDecision == 1 && choiceTwoDecision == 1)
             {
-                dayTwoDialogue.GetComponent<Dialogue>().index = 0;
+                dayThreeDialogue.GetComponent<Dialogue>().index = 0;
             }
 
-            else if (choiceOneDecision == 2)
+            else 
             {
-                dayTwoDialogue.GetComponent<Dialogue>().index = 1;
+                dayThreeDialogue.GetComponent<Dialogue>().index = 10;
             }
         }
     }
@@ -45,12 +44,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) 
+
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Day 2", LoadSceneMode.Single);
+            Application.Quit();
         }
 
-       
     }
 
  

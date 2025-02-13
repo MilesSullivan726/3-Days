@@ -8,11 +8,12 @@ public class Interactable : MonoBehaviour
     public GameObject dialogue;
     private bool hasInteracted = false;
     private bool inRange = false;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -20,6 +21,7 @@ public class Interactable : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space) && inRange)
         {
+            audioSource.Play();
             dialogue.SetActive(true);
             popUp.SetActive(false);
             hasInteracted = true;

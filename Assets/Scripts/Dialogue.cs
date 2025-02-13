@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Dialogue : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Dialogue : MonoBehaviour
     public Sprite[] playerExpressions;
     public Sprite[] NPCExpressions;
     private GameManager gameManager;
+    private AudioSource audioSource;
     public int[] playerLines;
     public int[] NPCLines;
     public int[] choiceLines;
@@ -38,6 +40,8 @@ public class Dialogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         if (activateKeyItem)
         {
             keyItem.SetActive(true);
@@ -53,7 +57,7 @@ public class Dialogue : MonoBehaviour
         else
         {
             DisplayPortraits(index);
-            StartCoroutine(TypeLine());
+            StartCoroutine(TypeLine(audioSource));
         }
         
     }
@@ -91,7 +95,14 @@ public class Dialogue : MonoBehaviour
           
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
             {
-                GameManager.choiceOneDecision = 1;
+                if (SceneManager.GetSceneByName("Day 1").isLoaded == true)
+                {
+                    GameManager.choiceOneDecision = 1;
+                }
+                else if (SceneManager.GetSceneByName("Day 2").isLoaded == true)
+                {
+                    GameManager.choiceTwoDecision = 1;
+                }
                 index = choice1Response - 1;
                 canMakeChoice = false;
                 choiceMade = true;
@@ -100,7 +111,14 @@ public class Dialogue : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
             {
-                GameManager.choiceOneDecision = 2;
+                if (SceneManager.GetSceneByName("Day 1").isLoaded == true)
+                {
+                    GameManager.choiceOneDecision = 2;
+                }
+                else if (SceneManager.GetSceneByName("Day 2").isLoaded == true)
+                {
+                    GameManager.choiceTwoDecision = 2;
+                }
                 index = choice2Response - 1;
                 canMakeChoice = false;
                 choiceMade = true;
@@ -116,14 +134,15 @@ public class Dialogue : MonoBehaviour
     void StartDialogue()
     {
         index = 0;
-        StartCoroutine(TypeLine());
+        StartCoroutine(TypeLine(audioSource));
     }
 
-    IEnumerator TypeLine()
+    IEnumerator TypeLine(AudioSource audioSource)
     {
         // show characters 1 by 1
         foreach (char c in lines[index].ToCharArray())
         {
+            audioSource.Play();
             textCompenent.text += c;
             yield return new WaitForSeconds(textSpeed);
 
@@ -140,7 +159,7 @@ public class Dialogue : MonoBehaviour
             DisplayChoices(index);
             EndDialogueCheck(index);
             textCompenent.text = string.Empty;
-            StartCoroutine(TypeLine());
+            StartCoroutine(TypeLine(audioSource));
         }
         else
         {
