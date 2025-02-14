@@ -2,6 +2,8 @@
 
 A nurse, Claire,  has been recently assigned a new patient named Edward.  Her new patient seems to be struggling with more than just his illness - something seems to be troubling him. Taking on the role of Claire, see how your choices will affect the relationship of an ailing father and his distant daughter.
 
+This is a project for our 2D Game Developement class, where the given prompt was to incorperate the theme of empathy. I was the sole programmer on the project, and the game was built in Unity 2022.
+
 Controls
 
 - WASD keys to move
