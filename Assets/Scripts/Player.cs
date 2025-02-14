@@ -41,26 +41,30 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            spriteRenderer.flipX = true;
+
             if (facingFront)
             {
+                spriteRenderer.flipX = false;
                 animator.SetTrigger("WalkFront");
             }
             else
             {
+                spriteRenderer.flipX = true;
                 animator.SetTrigger("WalkBack");
             }
         }
 
         else if (Input.GetKey(KeyCode.D))
         {
-            spriteRenderer.flipX = false;
+            
             if (facingFront)
             {
+                spriteRenderer.flipX = true;
                 animator.SetTrigger("WalkFront");
             }
             else
             {
+                spriteRenderer.flipX = false;
                 animator.SetTrigger("WalkBack");
             }
         }
